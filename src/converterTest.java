@@ -6,7 +6,7 @@ public class converterTest {
 
 	@Test
 	public void test() {
-		converter tempConv = new converter("test.csv","/dest","VCF");
+		converter tempConv = new converter("test.csv","/dest");
 		int res = tempConv.convert();
 		if(res==1){
 			System.out.println("hit");

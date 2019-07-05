@@ -68,16 +68,23 @@ public class mainFrame {
 		JButton btnNewButton = new JButton("Convert");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				converter newConverter = new converter(sourceField.getText(),destField.getText());
 				switch(outputChoice.getSelectedItem()) {
 				case "CSV":
+					newConverter.setOutput("CSV");
 					break;
 				case "VCARD":
+					newConverter.setOutput("VCARD");
 					break;
-				case "VCARD (Multiple)":
+				case "VCARDs":
+					newConverter.setOutput("VCARDS");
 					break;
 				}
-
-				lblContactConverter.setText("Contact Converted.");
+				if(newConverter.convert()==0){
+					lblContactConverter.setText("Contact Converted.");
+				} else {
+					lblContactConverter.setText("Contact Converter.");
+				}
 			}
 		});
 		btnNewButton.setBackground(SystemColor.control);
@@ -138,7 +145,7 @@ public class mainFrame {
 		outputChoice.setBounds(236, 265, 89, 26);
 		outputChoice.add("CSV");
 		outputChoice.add("VCARD");
-		outputChoice.add("VCARD (Multiple)");
+		outputChoice.add("VCARDs");
 		frame.getContentPane().add(outputChoice);
 		
 		JLabel lblOutputType = new JLabel("Output Type");
